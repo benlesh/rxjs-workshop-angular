@@ -1,0 +1,17 @@
+{
+  "name": "example-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "restify": "^4.1.1",
+    "restify-errors": "^4.3.0",
+    "rxjs": "^5.0.0-beta.12",
+    "ws": "^1.1.1"
+  }
+}

@@ -1,0 +1,35 @@
+RxJS Workshop
+========
+
+- Observables
+  - Why?
+    - Callbacks
+    - Promises
+    - Cancellation
+    - Multiple Values
+    - Origin from Iterable
+  - Basics
+    - Creation
+    - Subscription
+    - Sync vs Async behavior
+    - Hot vs Cold behavior
+- Operators
+  - Sync
+  - Async
+- Just a Function
+- Subjects
+  - Differences with Observable
+  - Use in RxJS
+    - Multicast
+    - As a source
+- Thinking "Reactively"
+  - Structuring your observables
+  - Choosing the right operators
+- Error Handling
+  - Common mistakes and misconceptions
+  - Error handling without stopping source observable
+- Use in Angular 2
+  - With component lifecycle
+  - With pipe async
+  - Auto-Complete example
+  - Multiplexed Socket example
