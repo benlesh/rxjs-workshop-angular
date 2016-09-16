@@ -4,13 +4,10 @@ var abc = 'abcdefghijklmnopqrstuvwxyz0123456789'.split('');
 
 var data = [];
 
-abc.forEach(function (a, i) {
-  abc.forEach(function (b, ii) {
-    abc.forEach(function (c, iii) {
-      data.push({
-        ticker: a + b + c,
-        seed: (i * 100 * abc.length) + (ii * 10 * abc.length) + i
-      });
+abc.forEach(function (a) {
+  abc.forEach(function (b) {
+    abc.forEach(function (c) {
+      data.push(a + b + c);
     });
   });
 });
@@ -19,7 +16,7 @@ module.exports = {
   data,
   suggest: function(q) {
     return data.filter(function(d) {
-      return d.ticker.indexOf(q) === 0;
+      return d.indexOf(q) === 0;
     });
   },
   getStream: function (ticker) {

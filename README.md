@@ -31,5 +31,9 @@ RxJS Workshop
 - Use in Angular 2
   - With component lifecycle
   - With pipe async
+  - With services
   - Auto-Complete example
   - Multiplexed Socket example
+- Other Methods
+  - Redux + Redux-Observable
+  - NgRx
