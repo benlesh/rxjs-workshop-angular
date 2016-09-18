@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "copysrc": "rm -rf exercises exercises-final/ && cp -r src/ exercises/ && cp -r src/ exercises-final/",
-    "gen1": "rm -rf templates && mkdir -p templates/node && cp src/node/{easy-as-123.js,sync-vs-async.js,cold-vs-hot.js,my-first-subject.js,operators-basic.js,subject-observer.js,subject-unsubscribe.js} templates/node/",
+    "gen1": "rm -rf templates && mkdir -p templates/node && cp src/node/{easy-as-123.js,sync-vs-async.js,cold-vs-hot.js,array-methods.js,my-first-subject.js,operators-basic.js,subject-observer.js,subject-unsubscribe.js} templates/node/",
     "gen2": "split-guide generate",
     "generate": "npm run gen1 && npm run gen2"
   },

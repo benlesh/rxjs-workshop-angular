@@ -26,11 +26,11 @@ const source = new Observable(observer => {
 // HINT: Subjects can be used as observers,
 //   and they multicast when used as observables.
 
-//FINAL_START
+// FINAL_START
 const subject = new Subject();
 
 subject.subscribe(observer);
 subject.subscribe(observer);
 
 source.subscribe(subject);
-//FINAL_END
+// FINAL_END

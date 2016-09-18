@@ -17,13 +17,8 @@ setTimeout(() => {
   // after 2 seconds, unsubscribe from the subject without "killing" it.
   // Keep the interval going though.
 
-  //WORKSHOP_START
   /* Add unsubscribe call here: but which one?
     `subscription1` or `subscription2`? */
-  //WORKSHOP_END
-  //FINAL_START
-  subscription1.unsubscribe();
-  //FINAL_END
 }, 2000);
 
 let subscription3;
@@ -38,12 +33,7 @@ setTimeout(() => {
   // after 5 seconds, stop observing the values, and make the subject unusable
   // you should only have to make one subscribe call.
 
-  //WORKSHOP_START
   /* unsubscribe code here */
-  //WORKSHOP_END
-  //FINAL_START
-  subject.unsubscribe();
-  //FINAL_END
 
   // If you did it right, the following block should
   // only log "SUCCESS! Subject is unusable"
