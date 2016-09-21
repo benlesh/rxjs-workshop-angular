@@ -13,11 +13,12 @@ const source = Observable.concat(
 const nextFn = x => console.log(x);
 const errorFn = err => console.error(err);
 const completeFn = () => console.info('done');
-//
+
+// using `map` then `switch`
 // source.map(x => Observable.interval(1000).mapTo(x))
 //   .switch()
 //   .subscribe(nextFn, errorFn, completeFn);
 
-
-source.switchMap(x => Observable.interval(100).take(100).mapTo(x))
+// Or (more efficient) using `switchMap`
+source.switchMap(x => Observable.interval(100).mapTo(x))
   .subscribe(nextFn, errorFn, completeFn);
