@@ -15,6 +15,8 @@ import { routing, appRoutingProviders } from './app.routing';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { StockLookupComponent } from './stock-lookup/stock-lookup.component';
+import { StockComponent } from './stock/stock.component';
+import { LineChartComponent } from './line-chart/line-chart.component';
 export var AppModule = (function () {
     function AppModule() {
     }
@@ -23,7 +25,9 @@ export var AppModule = (function () {
             declarations: [
                 AppComponent,
                 HomeComponent,
-                StockLookupComponent
+                StockLookupComponent,
+                StockComponent,
+                LineChartComponent
             ],
             imports: [
                 BrowserModule,

@@ -14,5 +14,8 @@
     "generate": "npm run gen1 && npm run gen2"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "ng2-highcharts": "^0.4.1"
+  }
 }
