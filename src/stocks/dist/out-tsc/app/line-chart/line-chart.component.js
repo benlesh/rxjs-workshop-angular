@@ -8,7 +8,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component, ElementRef } from '@angular/core';
-import Highcharts from 'highcharts';
+import * as Highcharts from 'highcharts';
 var lineChartCounter = 0;
 export var LineChartComponent = (function () {
     function LineChartComponent(el) {

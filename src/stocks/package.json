@@ -20,6 +20,7 @@
     "@angular/platform-browser": "2.0.0",
     "@angular/platform-browser-dynamic": "2.0.0",
     "@angular/router": "3.0.0",
+    "@types/highcharts": "^4.2.36",
     "angular2-highcharts": "^0.2.1",
     "core-js": "^2.4.1",
     "highcharts": "^4.2.7",

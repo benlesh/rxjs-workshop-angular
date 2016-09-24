@@ -29,7 +29,7 @@ import { Http, Response } from '@angular/http';
           {{ticker}}
         </div>
       </div>
-      <line-chart></line-chart>
+      <app-line-chart></app-line-chart>
     </div>
   `,
   styles: []

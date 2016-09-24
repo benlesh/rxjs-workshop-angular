@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import Highcharts from 'highcharts';
+import * as Highcharts from 'highcharts';
 
 let lineChartCounter = 0;
 
@@ -29,7 +29,7 @@ export class LineChartComponent implements OnInit {
       chart: {
         renderTo: elemId,
         type: 'spline',
-        animation: Highcharts.svg, // don't animate in old IE
+        animation: (<any>Highcharts).svg, // don't animate in old IE
         marginRight: 10,
         events: {
           load: function () {
