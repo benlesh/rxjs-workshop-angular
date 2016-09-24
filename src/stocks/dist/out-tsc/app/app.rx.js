@@ -1,6 +1,7 @@
 export { Observable } from 'rxjs/Observable';
 export { Subject } from 'rxjs/Subject';
 export { Subscription } from 'rxjs/Subscription';
+export { WebSocketSubject } from 'rxjs/observable/dom/WebSocketSubject';
 import 'rxjs/add/observable/timer';
 import 'rxjs/add/observable/empty';
 import 'rxjs/add/observable/of';

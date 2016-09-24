@@ -16,14 +16,23 @@ server.use(restify.CORS({
 wss.on('connection', function connection(ws) {
   var location = url.parse(ws.upgradeReq.url, true);
   var subs = {};
+  console.log('SOCKET OPENED');
 
   ws.on('message', function incoming(message) {
+    console.log('socket ->', message);
+
     var payload = JSON.parse(message);
     if (payload.type === 'sub') {
       var tickerStream = data.getStream(payload.ticker);
-      subs[payload.ticker] = tickerStream.subscribe(function (d) {
+      subs[payload.ticker] = tickerStream.do(function (d) {
+        console.log('send -> ', d);
         ws.send(JSON.stringify(d));
-      });
+      })
+      .finally(() => console.log('TICKER CLOSED', payload.ticker))
+      .subscribe(
+        null,
+        err => console.log('INGORED ERROR:', err)
+      );
     } else if (payload.type = 'unsub') {
       var sub = subs[payload.ticker];
       if (sub) {
@@ -34,6 +43,7 @@ wss.on('connection', function connection(ws) {
   });
 
   ws.on('close', function () {
+    console.log('SOCKET CLOSED');
     Object.keys(subs).forEach(function(key) {
       if (subs[key]) {
         subs[key].unsubscribe();

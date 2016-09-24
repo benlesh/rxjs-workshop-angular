@@ -7,14 +7,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, Input } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import { Observable } from '../app.rx';
 var lineChartCounter = 0;
 export var LineChartComponent = (function () {
     function LineChartComponent(el) {
         this.el = el;
     }
     LineChartComponent.prototype.ngOnInit = function () {
+        var _a = this, dataStream = _a.dataStream, title = _a.title;
+        var self = this;
         Highcharts.setOptions({
             global: {
                 useUTC: false
@@ -26,20 +29,20 @@ export var LineChartComponent = (function () {
             chart: {
                 renderTo: elemId,
                 type: 'spline',
-                animation: Highcharts.svg,
+                animation: true,
                 marginRight: 10,
                 events: {
                     load: function () {
                         var series = this.series[0];
-                        setInterval(function () {
-                            var x = (new Date()).getTime(), y = Math.random();
-                            series.addPoint([x, y], true, true);
-                        }, 1000);
+                        if (!dataStream) {
+                            throw new Error('no data stream provided');
+                        }
+                        self.subscription = dataStream.subscribe(function (y) { return series.addPoint([(new Date()).getTime(), y], true, true); });
                     }
                 }
             },
             title: {
-                text: 'Live random data'
+                text: title
             },
             xAxis: {
                 type: 'datetime',
@@ -75,7 +78,7 @@ export var LineChartComponent = (function () {
                         for (i = -19; i <= 0; i += 1) {
                             data.push({
                                 x: time + i * 1000,
-                                y: Math.random()
+                                y: 0
                             });
                         }
                         return data;
@@ -83,6 +86,19 @@ export var LineChartComponent = (function () {
                 }]
         });
     };
+    LineChartComponent.prototype.ngOnDestroy = function () {
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+        }
+    };
+    __decorate([
+        Input('dataStream'), 
+        __metadata('design:type', Observable)
+    ], LineChartComponent.prototype, "dataStream", void 0);
+    __decorate([
+        Input(), 
+        __metadata('design:type', String)
+    ], LineChartComponent.prototype, "title", void 0);
     LineChartComponent = __decorate([
         Component({
             selector: 'app-line-chart',

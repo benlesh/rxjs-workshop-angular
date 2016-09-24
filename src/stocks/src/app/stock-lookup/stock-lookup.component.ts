@@ -26,10 +26,9 @@ import { Http, Response } from '@angular/http';
       <div *ngIf="tickers && tickers.length">
         <div *ngFor="let ticker of tickers">
           <button (click)="removeTicker(index)">X</button>
-          {{ticker}}
+          <app-stock [ticker]="ticker"></app-stock>
         </div>
       </div>
-      <app-line-chart></app-line-chart>
     </div>
   `,
   styles: []

@@ -1,5 +1,6 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, Input } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import { Observable, Subscription } from '../app.rx';
 
 let lineChartCounter = 0;
 
@@ -10,11 +11,22 @@ let lineChartCounter = 0;
   `,
   styles: []
 })
-export class LineChartComponent implements OnInit {
+export class LineChartComponent implements OnInit, OnDestroy {
+
+  @Input('dataStream')
+  dataStream: Observable<any>;
+
+  @Input()
+  title: string;
+
+  subscription: Subscription;
 
   constructor(private el: ElementRef) { }
 
   ngOnInit() {
+    const { dataStream, title } = this;
+    const self = this;
+
     Highcharts.setOptions({
       global: {
         useUTC: false
@@ -29,22 +41,26 @@ export class LineChartComponent implements OnInit {
       chart: {
         renderTo: elemId,
         type: 'spline',
-        animation: (<any>Highcharts).svg, // don't animate in old IE
+        animation: true,
         marginRight: 10,
         events: {
           load: function () {
+
             // set up the updating of the chart each second
             let series = this.series[0];
-            setInterval(function () {
-              let x = (new Date()).getTime(), // current time
-                  y = Math.random();
-              series.addPoint([x, y], true, true);
-            }, 1000);
+
+            if (!dataStream) {
+              throw new Error('no data stream provided');
+            }
+
+            self.subscription = dataStream.subscribe(
+              y => series.addPoint([(new Date()).getTime(), y], true, true)
+            );
           }
         }
       },
         title: {
-          text: 'Live random data'
+          text: title
         },
         xAxis: {
           type: 'datetime',
@@ -84,7 +100,7 @@ export class LineChartComponent implements OnInit {
             for (i = -19; i <= 0; i += 1) {
               data.push({
                 x: time + i * 1000,
-                y: Math.random()
+                y: 0
               });
             }
             return data;
@@ -93,4 +109,9 @@ export class LineChartComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 }

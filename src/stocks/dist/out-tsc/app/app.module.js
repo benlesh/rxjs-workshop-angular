@@ -17,6 +17,8 @@ import { HomeComponent } from './home/home.component';
 import { StockLookupComponent } from './stock-lookup/stock-lookup.component';
 import { StockComponent } from './stock/stock.component';
 import { LineChartComponent } from './line-chart/line-chart.component';
+import { StockServerService } from './stock-server.service';
+import { WebSocketSubjectFactoryService } from './web-socket-subject-factory.service';
 export var AppModule = (function () {
     function AppModule() {
     }
@@ -35,7 +37,11 @@ export var AppModule = (function () {
                 HttpModule,
                 routing
             ],
-            providers: [appRoutingProviders],
+            providers: [
+                appRoutingProviders,
+                StockServerService,
+                WebSocketSubjectFactoryService
+            ],
             bootstrap: [AppComponent]
         }), 
         __metadata('design:paramtypes', [])
