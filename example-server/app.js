@@ -49,13 +49,17 @@ server.get('/ping/:value', function ping(req, res, next) {
 });
 
 server.get('/suggest/:q', function suggest(req, res, next) {
-  var result = data.suggest(req.params.q);
-  if (!result || result.length === 0) {
-    return next(new errors.NotFoundError());
-  } else {
-    res.send(result);
-    return next();
+  var q = req.params.q;
+  if (q.length > 1) {
+    var result = data.suggest(req.params.q);
+    if (!result || result.length === 0) {
+      return next(new errors.NotFoundError());
+    } else {
+      res.send(result);
+      return next();
+    }
   }
+  return next();
 });
 
 server.listen(8080, function() {
