@@ -1,0 +1,26 @@
+{
+    "authors": "Damiano Gambarotto <http://github.com/damianog>, Dan Lewi Harkestad <http://github.com/baltie>",
+    "definitionFilename": "index.d.ts",
+    "libraryDependencies": [],
+    "moduleDependencies": [],
+    "libraryMajorVersion": "4",
+    "libraryMinorVersion": "2",
+    "libraryName": "Highcharts 4.2.5",
+    "typingsPackageName": "highcharts",
+    "projectName": "http://www.highcharts.com/",
+    "sourceRepoURL": "https://www.github.com/DefinitelyTyped/DefinitelyTyped",
+    "sourceBranch": "types-2.0",
+    "kind": "Mixed",
+    "globals": [
+        "Highcharts"
+    ],
+    "declaredModules": [
+        "highcharts"
+    ],
+    "files": [
+        "highstock.d.ts",
+        "index.d.ts"
+    ],
+    "hasPackageJson": false,
+    "contentHash": "a8aa4127ee0135e14ddcbc5d370c347f34bf60a66b0d49ed5e78f4af575d9d40"
+}
