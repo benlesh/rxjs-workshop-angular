@@ -9,12 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Injectable } from '@angular/core';
 import { WebSocketSubjectFactoryService } from './web-socket-subject-factory.service';
+import { Observable } from './app.rx';
 export var StockServerService = (function () {
     function StockServerService(webSocketFactory) {
         this.socket = webSocketFactory.create('ws://localhost:8080/');
     }
     StockServerService.prototype.getTicker = function (ticker) {
-        return this.socket.multiplex(function () { return JSON.stringify({ type: 'sub', ticker: ticker }); }, function () { return JSON.stringify({ type: 'unsub', ticker: ticker }); }, function (d) { return d.ticker === ticker; });
+        return this.socket.multiplex(function () { return JSON.stringify({ type: 'sub', ticker: ticker }); }, function () { return JSON.stringify({ type: 'unsub', ticker: ticker }); }, function (d) { return d.ticker === ticker; })
+            .retryWhen(function (errors) {
+            return errors
+                .do(function (err) {
+                console.error(err);
+            })
+                .switchMap(function (err) { return Observable.timer(1000); });
+        });
     };
     StockServerService = __decorate([
         Injectable(), 

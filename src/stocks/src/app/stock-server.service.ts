@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { WebSocketSubjectFactoryService } from './web-socket-subject-factory.service';
-import { WebSocketSubject } from './app.rx';
+import { Observable, WebSocketSubject } from './app.rx';
 
 @Injectable()
 export class StockServerService {
@@ -11,6 +11,13 @@ export class StockServerService {
       () => JSON.stringify({ type: 'sub', ticker }),
       () => JSON.stringify({ type: 'unsub', ticker }),
       (d: any) => d.ticker === ticker
+    )
+    .retryWhen(errors =>
+      errors
+        .do((err) => {
+          console.error(err);
+        })
+        .switchMap(err => Observable.timer(1000))
     );
   }
 

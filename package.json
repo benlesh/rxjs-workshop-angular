@@ -16,6 +16,5 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ng2-highcharts": "^0.4.1"
   }
 }
