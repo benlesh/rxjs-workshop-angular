@@ -10,17 +10,17 @@ import { Http, Response } from '@angular/http';
 
   // FINAL_START
   template: `
-    <div wee>
+    <div>
       <form #myForm (submit)="addTicker(myForm.value.q)">
-        <input id="q" name="q" type="text" (blur)="clearSuggestions()" (keyup)="qKeyUp$.next($event)"/>
+        <input id="q" name="q" type="text" (keyup)="qKeyUp$.next($event)"/>
         <span *ngIf="error">{{error}}</span>
         <div *ngIf="suggestions">
           <p>{{suggestions.length}} suggestions</p>
           <ul>
             <li *ngFor="let suggestion of suggestions; let i = index">
-              <a href="#" (click)="addTicker(suggestion)">
+              <button (click)="addTicker(suggestion)">
                 {{suggestion}}
-              </a>
+              </button>
             </li>
           </ul>
         </div>

@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component, Input } from '@angular/core';
 import { StockServerService } from '../stock-server.service';
+import { Observable } from '../app.rx';
 export var StockComponent = (function () {
     function StockComponent(stockServer) {
         this.stockServer = stockServer;
@@ -16,6 +17,8 @@ export var StockComponent = (function () {
     }
     Object.defineProperty(StockComponent.prototype, "data$", {
         get: function () {
+            var ticker = this.ticker;
+            return Observable.timer(0, 1000).map(function () { return ({ ticker: ticker, value: Math.random() * 1000 }); });
             return this.stockServer.getTicker(this.ticker)
                 .map(function (d) { return d.value; });
         },

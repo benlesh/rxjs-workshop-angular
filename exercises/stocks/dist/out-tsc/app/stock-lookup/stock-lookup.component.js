@@ -27,6 +27,7 @@ export var StockLookupComponent = (function () {
     Object.defineProperty(StockLookupComponent.prototype, "suggestion$", {
         get: function () {
             var _this = this;
+            return Observable.empty();
             return this.qKeyUp$
                 .debounceTime(500)
                 .map(function (e) { return e.target.value; })

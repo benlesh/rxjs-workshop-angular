@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Whatever</title>
+    <script
+      src="https://unpkg.com/rxjs/bundles/Rx.min.js">
+    </script>
+  </head>
+  <body>
+
+    <input type="text" id="query" />
+
+    <script>
+      const { Observable } = Rx;
+
+      // http://locahost:8080/suggest/???
+
+      const query = document.querySelector('#query');
+
+      const query$ = Observable.fromEvent(query, 'keyup');
+
+      query$
+        .map(e => e.target.value)
+        .map(text =>
+          Observable.ajax.getJSON(
+            'http://localhost:8080/suggest/' + text
+          )
+        )
+        .mergeAll()
+        .subscribe(e => console.log(e));
+    </script>
+  </body>
+</html>

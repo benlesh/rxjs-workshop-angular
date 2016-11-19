@@ -24,7 +24,7 @@ module.exports = {
       .map(function (n) {
         return {
           ticker: ticker,
-          value: (Math.random() * 10) + (Math.sin(n) * 500) + 500
+          value: Math.random() * 1000
         };
       })
   }
